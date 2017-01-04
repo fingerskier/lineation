@@ -1,6 +1,6 @@
 {
   "name": "lineation",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Asynchronously parse a text file line-by-line",
   "main": "index.js",
   "scripts": {
