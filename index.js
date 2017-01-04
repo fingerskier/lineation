@@ -4,7 +4,7 @@ var stream = require('stream')
 var es = require('event-stream');
 
 
-module.exports = function(filepath, munger){
+module.exports = function(filepath, munger, finisher){
 	var line_stream = fs.createReadStream(filepath)
 		.pipe(es.split())
 		.pipe(es.mapSync(function(line){
@@ -19,9 +19,10 @@ module.exports = function(filepath, munger){
 		})
 		.on('error', function(err){
 			console.error(`ERROR: ${err}`)
+			throw err
 		})
 		.on('end', function(){
-			console.log('Read entire file.')
+			finisher()
 		})
 	)
 }
